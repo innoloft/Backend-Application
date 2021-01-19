@@ -1,0 +1,6 @@
+ProductAPI/bin/*
+ProductAPI/obj/*
+ProductAPI/.vscode/*
+ProductAPI.Tests/bin/*
+ProductAPI.Tests/obj/*
+ProductAPI.Tests/.vscode/*
