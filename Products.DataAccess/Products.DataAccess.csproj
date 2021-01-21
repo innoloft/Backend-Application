@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Products.Entity\Products.Entity.csproj" />
+    <ProjectReference Include="..\Products.Helpers\Products.Helpers.csproj" />
+  </ItemGroup>
+
+</Project>
