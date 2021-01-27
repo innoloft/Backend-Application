@@ -1,0 +1,9 @@
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\bin\Debug\netstandard2.0\ProductModuleDataAccess.deps.json
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\bin\Debug\netstandard2.0\ProductModuleDataAccess.dll
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\bin\Debug\netstandard2.0\ProductModuleDataAccess.pdb
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.AssemblyInfo.cs
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.dll
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.pdb
+C:\Users\USER\source\repos\Innoloft\Assignment\ProductsModule\ProductModuleDataAccess\obj\Debug\netstandard2.0\ProductModuleDataAccess.csprojAssemblyReference.cache

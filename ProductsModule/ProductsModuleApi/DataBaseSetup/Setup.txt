@@ -1,0 +1,27 @@
+﻿This link will help in installing MySQL and MySQL Workbench https://www.youtube.com/watch?v=u96rVINbAUI
+
+After installing MySQL and MySQL Workbench, create a new Schema "productmodule". Next, import the Dump20210127 folder
+(https://github.com/JIOO-phoeNIX/Backend-Application/tree/main/ProductsModule/ProductsModuleApi/DataBaseSetup/Dump20210127), this will setup the tables and initial data.
+
+In the appsettings.json file, replace the {databasepassword} with your MySQL password.
+
+
+The available endpoints are:
+
+GET /api/Products/allproducts - used to get all the products 
+GET /api/Products - used to get all the products 
+GET /api/Products/{id} - used to return a single Product.
+
+POST /api/Products - Used to create a new Product. The format of the input is:
+{
+  "name": "name of the product",
+  "description": "description of the product",
+  "userid": values allowed are 1 to 10 due to the endpoint https://jsonplaceholder.typicode.com/users/,
+  "contactid": only 1 and 2 is allowed due to the Id of the Contacts available in the Contacts table. To enable more id, add more data to the Contacts table then the Id can be used.
+  "typeid": same as contactid only 1 and 2 is allowed.
+}
+
+DELETE /api/Products/{id} - to delete a Product
+
+PATCH /api/Products/{id} - to update the details of a Product
+
