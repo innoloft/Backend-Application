@@ -35,6 +35,22 @@ namespace Backend_Application.WebAPI.Entities
             this.OwnerId = ownerId;
         }
 
+
+        public void Update(string title, string description, int ownerId, Type type)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentException("Title is null or empty", nameof(title));
+            }
+            if (string.IsNullOrEmpty(description))
+            {
+                throw new ArgumentException("Description is null or empty", nameof(description));
+            }
+            this.Title = title;
+            this.Description = description;
+            this.Type = type;
+            this.OwnerId = ownerId;
+        }
         public Product() { }
     }
 }

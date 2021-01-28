@@ -10,6 +10,9 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Collections.Generic;
+using System.Data.Odbc;
 
 namespace Backend_Application.WebAPI.Controllers
 {
@@ -67,5 +70,57 @@ namespace Backend_Application.WebAPI.Controllers
             return Ok(productDto);
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll (int page = 0)
+        {
+            var products = await _unitOfWork.Repository<Product>().Table.Skip(page * 10).Take(10).Include(p => p.Type).ToListAsync();
+            var productsDto = _mapper.Map<List<ProductDto>>(products);
+
+            var users = await _userService.GetUsers();
+            var usersDtos = _mapper.Map<List<ProductUserDto>>(users);
+
+            productsDto.ForEach(p => p.User = usersDtos.FirstOrDefault(u => u.Id == products.FirstOrDefault(pp => pp.ProductId == p.Id).OwnerId));
+
+            return Ok(productsDto);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateProductDto dto)
+        {
+            var type = _unitOfWork.Repository<Entities.Type>().Get(dto.TypeId);
+            if (type == null)
+            {
+                return BadRequest();
+            }
+
+            var user = await _userService.GetUser(dto.ContactPersonId);
+            if (user is null)
+            {
+                return BadRequest();
+            }
+
+
+            var productModel = _unitOfWork.Repository<Product>().Get(dto.ProductId);
+            productModel.Update(dto.Title, dto.Description, dto.ContactPersonId, type);
+            await _unitOfWork.CompleteAsync();
+
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = _unitOfWork.Repository<Product>().Get(id);
+            if(product is null)
+            {
+                return BadRequest();
+            }
+
+            _unitOfWork.Repository<Product>().Delete(product);
+            await _unitOfWork.CompleteAsync();
+            return Ok();
+        }
     }
 }
