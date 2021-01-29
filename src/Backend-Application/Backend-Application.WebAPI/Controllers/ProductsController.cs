@@ -33,6 +33,8 @@ namespace Backend_Application.WebAPI.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(ProductDto),201)]
         public async Task<IActionResult> Create(AddProductDto dto)
         {
             var type = _unitOfWork.Repository<Entities.Type>().Get(dto.TypeId);
@@ -59,6 +61,7 @@ namespace Backend_Application.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ ProducesDefaultResponseType(typeof(ProductDto))]
         public async Task<IActionResult> Get(int id)
         {
             var product = await _unitOfWork.Repository<Product>().Table.Include(p => p.Type).FirstOrDefaultAsync(p => p.ProductId == id);
@@ -72,6 +75,7 @@ namespace Backend_Application.WebAPI.Controllers
 
 
         [HttpGet]
+        [ProducesDefaultResponseType(typeof(List<ProductDto>))]
         public async Task<IActionResult> GetAll (int page = 0)
         {
             var products = await _unitOfWork.Repository<Product>().Table.Skip(page * 10).Take(10).Include(p => p.Type).ToListAsync();
@@ -86,6 +90,8 @@ namespace Backend_Application.WebAPI.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> Update(UpdateProductDto dto)
         {
             var type = _unitOfWork.Repository<Entities.Type>().Get(dto.TypeId);
@@ -110,6 +116,8 @@ namespace Backend_Application.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> Delete(int id)
         {
             var product = _unitOfWork.Repository<Product>().Get(id);

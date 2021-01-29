@@ -41,6 +41,8 @@ namespace Backend_Application.WebAPI
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddSwaggerGen();
+
             ConfigureLocalServices(services);
         }
 
@@ -51,6 +53,11 @@ namespace Backend_Application.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
