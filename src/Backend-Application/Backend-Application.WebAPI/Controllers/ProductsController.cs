@@ -92,6 +92,7 @@ namespace Backend_Application.WebAPI.Controllers
         [HttpPut]
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> Update(UpdateProductDto dto)
         {
             var type = _unitOfWork.Repository<Entities.Type>().Get(dto.TypeId);
@@ -108,6 +109,13 @@ namespace Backend_Application.WebAPI.Controllers
 
 
             var productModel = _unitOfWork.Repository<Product>().Get(dto.ProductId);
+
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if(productModel.OwnerId.ToString() != currentUserId)
+            {
+                return Unauthorized();
+            }
+
             productModel.Update(dto.Title, dto.Description, dto.ContactPersonId, type);
             await _unitOfWork.CompleteAsync();
 
@@ -118,12 +126,19 @@ namespace Backend_Application.WebAPI.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> Delete(int id)
         {
             var product = _unitOfWork.Repository<Product>().Get(id);
             if(product is null)
             {
                 return BadRequest();
+            }
+
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (product.OwnerId.ToString() != currentUserId)
+            {
+                return Unauthorized();
             }
 
             _unitOfWork.Repository<Product>().Delete(product);

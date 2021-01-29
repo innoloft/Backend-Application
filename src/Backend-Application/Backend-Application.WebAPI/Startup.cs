@@ -2,6 +2,7 @@ using AutoMapper;
 using Backend_Application.WebAPI.Data;
 using Backend_Application.WebAPI.Services;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +44,26 @@ namespace Backend_Application.WebAPI
 
             services.AddSwaggerGen();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy", builder =>
+                 {
+                     builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost").AllowAnyHeader().AllowAnyMethod();
+                 });
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "TheIdentityUrl";
+                options.RequireHttpsMetadata = false;
+                options.Audience = "Catalog&Products";
+            });
+
             ConfigureLocalServices(services);
         }
 
@@ -58,8 +79,11 @@ namespace Backend_Application.WebAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+            
             app.UseRouting();
+            app.UseCors("MyPolicy");
+            app.UseAuthentication();
+
 
             app.UseEndpoints(endpoints =>
             {
