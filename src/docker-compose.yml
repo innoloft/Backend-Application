@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  backendapp:
+    build:
+      context: .
+      dockerfile: BackendApplication/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - mysql
+      - redis
+  redis:
+    image: "redis:alpine"
+  mysql: 
+    image: "mysql"
+    environment:
+      MYSQL_DATABASE: 'myDataBase'
+      MYSQL_ROOT_PASSWORD: 'pass123'
