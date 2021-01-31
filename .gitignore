@@ -1,0 +1,7 @@
+InnoloftTask/.vs
+InnoloftTask/InnoloftTask/bin
+InnoloftTask/InnoloftTask/obj
+InnoloftTask/InnoloftTask/published/
+InnoloftTask/InnoloftTests/bin
+InnoloftTask/InnoloftTests/obj
+*.dll

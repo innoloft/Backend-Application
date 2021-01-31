@@ -1,3 +1,21 @@
+Task time: 2hrs (approx)
+
+Learning time: 6hrs (approx)
+    - C# basics
+    - MVC structure
+    - APIs
+    - Calling an API
+    - retrieving as obj
+    - postman
+    - sqlite
+    - connecting and using sqlite
+    - filtering
+    - parametric urls
+    - xunit tests
+    - publishing the app
+    - Dockerfile for app
+
+
 # Backend-Application
 ## Instructions
 Please stick to the following instructions on how to submit your application:
