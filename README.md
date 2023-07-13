@@ -49,6 +49,7 @@ It also should enable users to register for the the event.
 
 # Technical Requirements
 
+- For API design follow REST style
 - Project
   - [ASP.NET Core web API application](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio). Prefer version 6.
 - Database
