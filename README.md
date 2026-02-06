@@ -169,7 +169,5 @@ Note: The mockups are only for reference and to give you an idea of the expected
 - Tests project
   - At least one unit test should be written (even the simplest one)
 - Project should be setup to run as a docker container - `Dockerfile` is required
-- Attach user data
-  - To get complete single event page response - it should include the user data as on the mockup. Make an API request to user API to get user info ([https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1))
 
 ❗ Please add instructions for setup if necessary
