@@ -10,7 +10,7 @@ Please stick to the following instructions on how to submit your application:
    - Link to **public** accessible repository on **GitHub**
    - How many hours it took to complete (roughly)
 
-**Please do not spend much more than 6 hours for the whole task.** This is not a hard limitation but want to respect your time since we cannot hire every applicant. Also only start with the task if you think this is something you can do in the given time frame.
+**Please do not spend much more than 1-2 hours for the whole task.** This is not a hard limitation but want to respect your time since we cannot hire every applicant. Also only start with the task if you think this is something you can do in the given time frame.
 
 ### Additional Information to submit a successful application
 
@@ -27,7 +27,9 @@ Thank you very much and have fun with the challenge!
 
 ### General: LoftOS
 
-LoftOS is a B2B no-code platform that empowers organizations to launch their own web applications — ranging from innovation marketplaces to procurement hubs — without writing a single line of code. Our architecture is completely modular. Modules (Offers, Chat, Matchmaking) are composed of various microservices that interact via an event bus.
+LoftOS is a B2B no-code platform that empowers organizations to launch their own web applications - ranging from innovation marketplaces to procurement hubs - without writing a single line of code.
+
+Our architecture is modular and follows Domain-Driven Design (DDD). Modules (Offers, Chat, Matchmaking) are composed of various microservices that use an event bus for eventual consistency, and gRPC when immediate data is needed.
 
 ### Problem: User onboarding and task management
 
@@ -118,7 +120,7 @@ flowchart TD
         Select_Step -- Previous Step Incomplete --> Locked[Action Denied / UI Locked]
         Select_Step -- Previous Step Done --> Action_Type{Step Type?}
         
-        Action_Type -- Manual --> API_Call["POST /steps/{id\}/complete"]
+        Action_Type -- Manual --> API_Call["POST /steps/{id}/complete"]
         Action_Type -- Automated --> External_Act[User Creates Content in Module]
     end
 
@@ -162,10 +164,9 @@ Note: The mockups are only for reference and to give you an idea of the expected
 
 - For API design follow REST style
 - Project
-  - [ASP.NET Core web API application](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio). Prefer version 6.
+  - [ASP.NET Core web API application](https://learn.microsoft.com/en-gb/aspnet/core/fundamentals/apis). Prefer version 8 or later.
 - Database
   - Use SQLite or MySQL (**Do not use Microsoft SQL or SQL Express**). Please add setup instructions if necessary
   - Use EF Core ORM framework to work with database
 - Tests project
-  - At least one unit test should be written (even the simplest one)
 - Project should be setup to run as a docker container - `Dockerfile` is required
