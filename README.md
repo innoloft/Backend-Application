@@ -169,5 +169,3 @@ Note: The mockups are only for reference and to give you an idea of the expected
 - Tests project
   - At least one unit test should be written (even the simplest one)
 - Project should be setup to run as a docker container - `Dockerfile` is required
-
-❗ Please add instructions for setup if necessary
